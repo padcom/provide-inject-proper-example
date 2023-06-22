@@ -3,12 +3,10 @@ import { createInjectionState } from '@vueuse/core'
 
 const [createDialogContext, useDialogContext] = createInjectionState((
   dialog: Ref<HTMLDialogElement | undefined>,
-  open: () => void,
   close: (returnValue?: string) => void,
 ) => ({
   title: ref('Dialog title'),
   dialog,
-  open,
   close,
 }))
 

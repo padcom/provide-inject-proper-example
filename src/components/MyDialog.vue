@@ -34,7 +34,7 @@ function showModal(): Promise<string | undefined> {
 }
 
 // That's the API we provide to our child components
-const context = createDialogContext(dialog, showModal, close)
+const context = createDialogContext(dialog, close)
 
 // That's the API we provide to our users
 defineExpose({ showModal })
