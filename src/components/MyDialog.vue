@@ -2,6 +2,10 @@
 <template>
   <dialog ref="dialog" @close="close">
     <h1 style="margin-top: 0; text-decoration: underline;">
+      <!--
+        Just an example on how we can provide the child components
+        access to data that is in the context
+      -->
       {{ context.title.value }}
     </h1>
     <slot v-bind="context" />
