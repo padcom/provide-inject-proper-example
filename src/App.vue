@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/no-static-inline-styles -->
 <template>
   <h3>Dialog example</h3>
-  <MyDialog v-slot="data">
+  <MyDialog ref="dialog" v-slot="data">
     <div>{{ data }}</div>
     <div style="margin-top: 48px; display: flex; justify-content: center; gap: 24px; ">
       <CloseButton />
@@ -10,6 +10,7 @@
       <button @click="data.title.value = 'Changed in App.vue'">Change title</button>
     </div>
   </MyDialog>
+  <button @click="exampleDialogProcess">Show the custom modal dialog</button>
 
   <h3>Nested providers and their consumers with <code>provide()</code>/<code>inject()</code></h3>
   <div class="legend">
@@ -74,12 +75,20 @@
 </template>
 
 <script lang="ts" setup>
+import { ref } from 'vue'
 import MyDialog from './components/MyDialog.vue'
 import CloseButton from './components/dialog-aware/CloseButton.vue'
 import Example from './components/Example.vue'
 import Provider from './components/Provider.vue'
 import Consumer from './components/Consumer.vue'
 import Mixed from './components/Mixed.vue'
+
+const dialog = ref<typeof MyDialog>()
+
+async function exampleDialogProcess() {
+  const result = await dialog.value?.showModal()
+  console.log('Dialog result:', result)
+}
 </script>
 
 <style lang="postcss">
