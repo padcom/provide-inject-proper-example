@@ -1,5 +1,11 @@
 <template>
-  <slot />
+  <div class="provider">
+    <h4>Provider</h4>
+    <div>Provided context: {{ context }}</div>
+    <div class="content">
+      <slot />
+    </div>
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -10,5 +16,12 @@ const props = defineProps({
 })
 
 console.log('Provider - Creating example context with', props.value)
-createExampleContext(props.value)
+const context = createExampleContext(props.value)
 </script>
+
+<style lang="postcss" scoped>
+.provider {
+  border: var(--border-style) var(--border-size) blue;
+  padding: 4px;
+}
+</style>
