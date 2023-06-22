@@ -1,4 +1,16 @@
+<!-- eslint-disable vue/no-static-inline-styles -->
 <template>
+  <h3>Dialog example</h3>
+  <MyDialog v-slot="data">
+    <div>{{ data }}</div>
+    <div style="margin-top: 48px; display: flex; justify-content: center; gap: 24px; ">
+      <CloseButton />
+      <CloseButton value="a">Custom close button</CloseButton>
+      <button @click="data.close('CLOSED!')">Close the dialog</button>
+      <button @click="data.title.value = 'Changed in App.vue'">Change title</button>
+    </div>
+  </MyDialog>
+
   <h3>Nested providers and their consumers with <code>provide()</code>/<code>inject()</code></h3>
   <div class="legend">
     <div>
@@ -62,6 +74,8 @@
 </template>
 
 <script lang="ts" setup>
+import MyDialog from './components/MyDialog.vue'
+import CloseButton from './components/dialog-aware/CloseButton.vue'
 import Example from './components/Example.vue'
 import Provider from './components/Provider.vue'
 import Consumer from './components/Consumer.vue'
