@@ -7,7 +7,7 @@
       <button @click="current.field.value = 'Changed in Mixed.vue!'">Test me</button>
     </div>
     <div class="content">
-      <slot />
+      <slot v-bind="{ current, parent }" />
     </div>
   </div>
 </template>
@@ -26,7 +26,7 @@ console.log('Mixed - parent', parent)
 <style lang="postcss" scoped>
 .mixed {
   border: var(--border-style) var(--border-size) orangered;
-  padding: 4px;
-  margin: 2px;
+  padding: var(--element-padding);
+  margin: var(--element-margin);
 }
 </style>

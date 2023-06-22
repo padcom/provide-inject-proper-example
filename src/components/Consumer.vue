@@ -2,8 +2,10 @@
   <div class="consumer">
     <h4>Consumer</h4>
     <div>Name: {{ name }}</div>
-    <div>Data: {{ data }}</div>
-    <slot />
+    <div>Context: {{ context }}</div>
+    <div class="content">
+      <slot v-bind="context" />
+    </div>
   </div>
 </template>
 
@@ -15,14 +17,14 @@ const props = defineProps({
   name: { type: String, default: 'from Consumer' },
 })
 
-const data = useExampleContext()
-console.log('Consumer - Injected ', JSON.stringify(toRaw(data)), 'into', props.name)
+const context = useExampleContext()
+console.log('Consumer - Injected ', JSON.stringify(toRaw(context)), 'into', props.name)
 </script>
 
 <style lang="postcss" scoped>
 .consumer {
   border: var(--border-style) var(--border-size) green;
-  padding: 4px;
-  margin: 2px;
+  padding: var(--element-padding);
+  margin: var(--element-margin);
 }
 </style>

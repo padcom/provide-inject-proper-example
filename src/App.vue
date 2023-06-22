@@ -16,28 +16,38 @@
   </div>
 
   <div class="providers">
-    <Provider value="1">
+    <Provider v-slot="{ field }" value="1">
       <h5>Provider "1" content from App.vue</h5>
-      <Consumer name="a">
+      <div>APP: {{ field }}</div>
+      <Consumer v-slot="{ field: field1 }" name="a">
         <h5>Consumer "a" content from App.vue</h5>
+        <div>APP: {{ field1 }}</div>
       </Consumer>
-      <Consumer name="b">
+      <Consumer v-slot="{ field: field1 }" name="b">
         <h5>Consumer "b" content from App.vue</h5>
-        <Provider value="2">
+        <div>APP: {{ field1 }}</div>
+        <Provider v-slot="{ field: field2 }" value="2">
           <h5>Provider "2" content from App.vue</h5>
-          <Consumer name="c">
+          <div>APP: {{ field2 }}</div>
+          <Consumer v-slot="{ field: field3 }" name="c">
             <h5>Consumer "c" content from App.vue</h5>
+            <div>APP: {{ field3 }}</div>
           </Consumer>
-          <Mixed value="3">
+          <Mixed v-slot="{ current, parent }" value="3">
             <h5>Mixed "3" content from App.vue</h5>
-            <Consumer name="d">
+            <div>APP parent: {{ parent }}</div>
+            <div>APP current: {{ current }}</div>
+            <Consumer v-slot="data" name="d">
               <h5>Consumer "d" content from App.vue</h5>
+              <div>Field: <code>{{ data }} </code></div>
+              <button @click="data.field!.value = 'Changed in consumer \'d\' in App.vue'">Test me</button>
             </Consumer>
           </Mixed>
         </Provider>
       </Consumer>
-      <Consumer name="e">
+      <Consumer v-slot="{ field: field2 }" name="e">
         <h5>Consumer "e" content from App.vue</h5>
+        <div>Field: <code>{{ field2?.value }} </code></div>
       </Consumer>
     </Provider>
   </div>
@@ -62,6 +72,8 @@ import Mixed from './components/Mixed.vue'
 :root {
   --border-style: dashed;
   --border-size: 1px;
+  --element-padding: 8px;
+  --element-margin: 4px;
 }
 
 .providers {
@@ -74,7 +86,7 @@ h4 {
 }
 
 .legend {
-  padding: 6px;
+  margin: calc(var(--element-margin) * 2);
 }
 
 .legend-item {

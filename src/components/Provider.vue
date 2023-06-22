@@ -3,7 +3,7 @@
     <h4>Provider</h4>
     <div>Provided context: {{ context }}</div>
     <div class="content">
-      <slot />
+      <slot v-bind="context" />
     </div>
   </div>
 </template>
@@ -22,6 +22,7 @@ const context = createExampleContext(props.value)
 <style lang="postcss" scoped>
 .provider {
   border: var(--border-style) var(--border-size) blue;
-  padding: 4px;
+  padding: var(--element-padding);
+  margin: var(--element-margin);
 }
 </style>
