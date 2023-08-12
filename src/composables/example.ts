@@ -1,4 +1,4 @@
-import { createInjectionState } from '@vueuse/core'
+import { createInjectionState } from './createInjectionState'
 import { ref } from 'vue'
 
 const [createExampleContext, useExampleContext] = createInjectionState((msg: string) => {

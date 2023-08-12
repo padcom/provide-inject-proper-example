@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "",
   "scripts": {
+    "dev": "vite",
     "start": "vite",
     "build": "vite build",
     "test": "vitest run --environment jsdom --root src/ --coverage",
@@ -12,7 +13,7 @@
   "author": "Matthias Hryniszak <padcom@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "@padcom/eslint-config-vue": "^0.3.0",
+    "@padcom/eslint-config-vue": "^0.6.0",
     "@vitejs/plugin-vue": "^4.2.3",
     "@vue/tsconfig": "^0.4.0",
     "@vueuse/core": "^10.2.0",
@@ -26,7 +27,14 @@
   "eslintConfig": {
     "extends": [
       "@padcom/eslint-config-vue"
-    ]
+    ],
+    "rules": {
+      "vue/no-deprecated-slot-attribute": 0,
+      "vue/no-v-html": 0,
+      "vue/no-v-text-v-html-on-component": 0,
+      "vue/no-lone-template": 0,
+      "vue/no-setup-props-destructure": 0
+    }
   },
   "homepage": "https://github.com/padcom/provide-inject-proper-example#readme",
   "bugs": {
